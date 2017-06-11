@@ -1,14 +1,33 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      ToDo Task
     </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="showModal()">
+          <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content >
+  <ion-list>
+    <ion-item *ngIf="!tasks.length">
+      <p>No Tasks! Click <ion-icon name="add-circle"></ion-icon> to create task</p>
+    </ion-item>
+  <ion-item-sliding *ngFor="let t of tasks">
+    <ion-item>
+        <ion-toggle checked="{{(t.status == 'pending') ? false : true}}" (click)="doneTask(t)"></ion-toggle>
+        <ion-label>
+            <h2 [ngClass]="t.status">{{t.task}}</h2>
+            <p [ngClass]="t.priority">{{t.priority}}</p>
+        </ion-label>
+    </ion-item>
+            <ion-item-options>
+                <button ion-button color="primary" (click)="showModal(t)"><ion-icon name="clipboard"></ion-icon> Edit</button>
+                <button ion-button color="danger" (click)="delTask(t)" ><ion-icon name="trash"></ion-icon> Delete</button>
+            </ion-item-options>
+  </ion-item-sliding>
+    </ion-list>
 </ion-content>

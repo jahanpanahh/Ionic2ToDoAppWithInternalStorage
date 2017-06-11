@@ -1,0 +1,33 @@
+<ion-header>
+<ion-toolbar color="primary">
+    <ion-title>
+        {{label}} task
+    </ion-title>
+    <ion-buttons start>
+        <button ion-button color="light" (click)="close()">
+            <ion-icon name="close">  </ion-icon>
+        </button>
+    </ion-buttons>
+</ion-toolbar>
+</ion-header>
+<ion-content class="has-header">   
+    <ion-list>
+        <ion-item>
+            <ion-label>Task</ion-label>
+            <ion-input type="text" [(ngModel)]="task"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label >Priority</ion-label>
+
+            <ion-select [(ngModel)]="priority">
+                <ion-option value="high">High</ion-option>
+                <ion-option value="normal">Normal</ion-option>
+                <ion-option value="low">Low</ion-option>
+            </ion-select>
+        </ion-item>       
+    </ion-list>
+
+    <div padding>
+        <button ion-button full round (click)="saveTask()" >Save</button>
+    </div>
+</ion-content>
